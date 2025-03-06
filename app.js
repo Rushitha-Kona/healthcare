@@ -28,12 +28,11 @@ const isAuthenticated = (req, res, next) => {
 // ✅ Secure API Keys from .env
 const NEWS_API_KEY = process.env.NEWS_API_KEY;
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
-<<<<<<< HEAD
-const NEWS_URL ='https://newsapi.org/v2/everything?q=nutrition&language=en&apiKey=${NEWS_API_KEY};' 
-=======
+
+//const NEWS_URL ='https://newsapi.org/v2/everything?q=nutrition&language=en&apiKey=${NEWS_API_KEY};' 
+
 const NEWS_URL = `https://newsapi.org/v2/everything?q=nutrition&language=en&apiKey=${NEWS_API_KEY}`;
  
->>>>>>> dbd284c (Updated commit message)
 
 // ✅ Initialize Gemini AI
 const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
@@ -207,11 +206,11 @@ app.get('/bmi',isAuthenticated, (req, res) => {
 });
 
 // ✅ Diet Plan Page
-<<<<<<< HEAD
-app.get('/diet-plan',isAuthenticated, (req, res) => {
-=======
+
+
+
 app.get('/diet-plan', isAuthenticated, (req, res) => {
->>>>>>> dbd284c (Updated commit message)
+
     res.render('diet-plan', { title: "Diet Plan", dietPlan: "" });
 });
 
@@ -226,7 +225,6 @@ app.post('/diet-plan', async (req, res) => {
         snacks: ""
     };
 
-<<<<<<< HEAD
     if (goal === "lose") {
         if (preference === "vegetarian") {
             dietPlan = {
@@ -275,33 +273,12 @@ app.post('/diet-plan', async (req, res) => {
         }
     } else { // Maintain weight
         if (preference === "vegetarian") {
-=======
-    switch (goal) {
-        case "lose":
-            dietPlan = {
-                breakfast: "Oatmeal with fruits and nuts",
-                lunch: "Grilled chicken salad",
-                dinner: "Steamed fish with vegetables",
-                snacks: "Greek yogurt with honey"
-            };
-            break;
-        case "gain":
-            dietPlan = {
-                breakfast: "Peanut butter toast with banana",
-                lunch: "Quinoa with grilled salmon",
-                dinner: "Beef steak with mashed potatoes",
-                snacks: "Protein smoothie"
-            };
-            break;
-        case "maintain":
->>>>>>> dbd284c (Updated commit message)
             dietPlan = {
                 breakfast: "Smoothie with spinach, banana & protein powder",
                 lunch: "Grilled tofu salad with vinaigrette dressing",
                 dinner: "Stir-fried veggies with chickpeas",
                 snacks: "Hummus with whole grain crackers"
             };
-<<<<<<< HEAD
         } else if (preference === "low-carb") {
             dietPlan = {
                 breakfast: "Scrambled eggs with cheese & avocado",
@@ -317,76 +294,11 @@ app.post('/diet-plan', async (req, res) => {
                 snacks: "Cottage cheese with walnuts"
             };
         }
-=======
-            break;
-        case "muscle":
-            dietPlan = {
-                breakfast: "Egg whites with whole grain toast",
-                lunch: "Chicken breast with quinoa and broccoli",
-                dinner: "Salmon with brown rice and asparagus",
-                snacks: "Almonds and protein shake"
-            };
-            break;
-        case "strength":
-            dietPlan = {
-                breakfast: "Omelet with avocado and cheese",
-                lunch: "Beef and vegetable stir-fry",
-                dinner: "Grilled pork chops with sweet potatoes",
-                snacks: "Cottage cheese with berries"
-            };
-            break;
-        case "endurance":
-            dietPlan = {
-                breakfast: "Whole wheat pancakes with honey",
-                lunch: "Pasta with grilled chicken and vegetables",
-                dinner: "Baked salmon with quinoa and steamed veggies",
-                snacks: "Energy bar with nuts and dried fruits"
-            };
-            break;
-        case "flexibility":
-            dietPlan = {
-                breakfast: "Yogurt with flaxseeds and berries",
-                lunch: "Vegetable stir-fry with tofu",
-                dinner: "Soup with whole grain bread",
-                snacks: "Smoothie with kale and bananas"
-            };
-            break;
-        case "healthy_eating":
-            dietPlan = {
-                breakfast: "Green smoothie with chia seeds",
-                lunch: "Grilled vegetable and hummus wrap",
-                dinner: "Lentil soup with mixed greens",
-                snacks: "Nuts and fresh fruit"
-            };
-            break;
-        case "detox":
-            dietPlan = {
-                breakfast: "Lemon water with chia seeds",
-                lunch: "Raw vegetable salad with lemon dressing",
-                dinner: "Steamed broccoli with garlic and herbs",
-                snacks: "Cucumber and mint juice"
-            };
-            break;
->>>>>>> dbd284c (Updated commit message)
     }
 
     res.render("diet-plan", { title: "Your Personalized Diet Plan", dietPlan });
 });
 
-<<<<<<< HEAD
-
-// ✅ Fitness Tips Page
-app.get('/fitness-tips', isAuthenticated,(req, res) => {
-    const goal = req.session.goal; 
-    let workoutTips = [];
-
-    if (goal === "lose") {
-        workoutTips = ["Do cardio like running, cycling.", "Incorporate HIIT.", "Strength train 2-3 times per week."];
-    } else if (goal === "gain") {
-        workoutTips = ["Focus on weight lifting.", "Eat enough protein.", "Train major muscle groups twice a week."];
-    } else {
-        workoutTips = ["Mix cardio and strength training.", "Follow a consistent routine.", "Eat a well-balanced diet."];
-=======
 // ✅ Fitness Tips Page
 app.get('/fitness-tips', isAuthenticated, (req, res) => {
     const goal = req.session.goal;
@@ -420,17 +332,15 @@ app.get('/fitness-tips', isAuthenticated, (req, res) => {
         default:
             workoutTips = ["Mix cardio and strength training.", "Follow a consistent routine.", "Eat a well-balanced diet."];
             break;
->>>>>>> dbd284c (Updated commit message)
     }
 
     res.render('fitness-tips', { workoutTips });
 });
 
 // ✅ Chatbot Page (GET)
-app.get('/chatbot', isAuthenticated,(req, res) => {
-    res.render('chatbot', { title: 'Chatbot', botResponse: "" });  // Ensure botResponse is defined
+app.get('/chatbot', isAuthenticated, (req, res) => {
+    res.render('chatbot', { title: 'Chatbot', botResponse: "" });
 });
-
 
 // ✅ Chatbot API (POST) - Google Gemini AI
 app.post('/chatbot', isAuthenticated,async (req, res) => {
