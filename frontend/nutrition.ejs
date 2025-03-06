@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+            background-color: #444;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 10px 15px;
+            display: inline-block;
+        }
+
+        nav ul li a:hover {
+            background-color: #555;
+            border-radius: 5px;
+        }
+
+        .articles-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .article-card:hover {
+            transform: scale(1.05);
+        }
+
+        .article-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .article-meta {
+            font-size: 14px;
+            color: gray;
+            margin: 10px 0;
+        }
+
+        .read-more {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 12px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .read-more:hover {
+            background: #0056b3;
+        }
+
+        footer {
+            margin-top: 20px;
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Balanced Diet & Health Tracker</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/register">Register</a></li>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/bmi">BMI Calculator</a></li>
+            <li><a href="/diet-plan">Diet Plan</a></li>
+            
+            <li><a href="/chatbot">Chatbot</a></li>
+            <li><a href="/nutrition">Nutrition articles</a></li>
+           <li><a class="nav-link text-success" href="/recipes"> Healthy Recipes</a></li> 
+        </ul>
+    </nav>
+
+    <h1 style="text-align: center;">Daily Nutrition Articles</h1>
+
+    <div class="articles-container">
+        <% articles.forEach(article => { %>
+            <div class="article-card">
+                <img src="<%= article.urlToImage %>" alt="Article Image" class="article-img">
+                <h2><%= article.title %></h2>
+                <p><%= article.description ? article.description : "No description available." %></p>
+                <p class="article-meta">
+                    <strong>By:</strong> <%= article.author ? article.author : "Unknown" %> | 
+                    <strong>Published:</strong> <%= new Date(article.publishedAt).toDateString() %>
+                </p>
+                <a href="<%= article.url %>" class="read-more" target="_blank">Read More</a>
+            </div>
+        <% }); %>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Balanced Diet & Health Tracker</p>
+    </footer>
+
+</body>
+</html>

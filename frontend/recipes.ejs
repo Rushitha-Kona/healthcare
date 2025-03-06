@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthy Recipes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        header {
+            background-color: #28a745;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+            background-color: #333;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 10px 15px;
+            display: inline-block;
+        }
+
+        nav ul li a:hover {
+            background-color: #555;
+            border-radius: 5px;
+        }
+
+        .container {
+            margin-top: 30px;
+        }
+
+        .card {
+            border-radius: 15px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        footer {
+            margin-top: 20px;
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Healthy Recipes 🍏</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/register">Register</a></li>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/bmi">BMI Calculator</a></li>
+            <li><a href="/diet-plan">Diet Plan</a></li>
+            
+            <li><a href="/chatbot">Chatbot</a></li>
+            <li><a href="/nutrition">Nutrition articles</a></li>
+           <li><a class="nav-link text-success" href="/recipes"> Healthy Recipes</a></li> 
+        </ul>
+    </nav>
+
+    <div class="container">
+      
+        <div class="row">
+            <% recipes.forEach(recipe => { %>
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-sm">
+                        <img src="<%= recipe.image %>" class="card-img-top" alt="Recipe Image">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= recipe.title %></h5>
+                            <p><strong>Ingredients:</strong></p>
+                            <ul>
+                                <% recipe.ingredients.forEach(ingredient => { %>
+                                    <li><%= ingredient %></li>
+                                <% }) %>
+                            </ul>
+                            <a href="<%= recipe.instructions %>" class="btn btn-success" target="_blank">View Full Recipe</a>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Balanced Diet & Health Tracker</p>
+    </footer>
+
+</body>
+</html>

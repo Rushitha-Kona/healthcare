@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diet Plan & Fitness Tips</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+            background-color: #444;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 10px 15px;
+            display: inline-block;
+        }
+
+        nav ul li a:hover {
+            background-color: #555;
+            border-radius: 5px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        .diet-plan {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        input, select, button {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .home-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .home-btn:hover {
+            background-color: #0056b3;
+        }
+
+        footer {
+            margin-top: 20px;
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Balanced Diet & Health Tracker</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+                <li><a href="/register">Register</a></li>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/bmi">BMI Calculator</a></li>
+                <li><a href="/diet-plan">Diet Plan</a></li>
+                
+                <li><a href="/chatbot">Chatbot</a></li>
+                <li><a href="/nutrition">Nutrition articles</a></li>
+               <li><a class="nav-link text-success" href="/recipes"> Healthy Recipes</a></li> 
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Get Your Personalized Diet Plan</h1>
+        <form action="/diet-plan" method="POST">
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required>
+
+            <label for="weight">Weight (kg):</label>
+            <input type="number" id="weight" name="weight" required>
+
+            <label for="goal">Goal:</label>
+            <select id="goal" name="goal" required>
+                <option value="lose">Lose Weight</option>
+                <option value="gain">Gain Weight</option>
+                <option value="maintain">Maintain Weight</option>
+            </select>
+
+            <button type="submit">Get Diet Plan</button>
+        </form>
+
+        <% if (dietPlan) { %>
+            <h2>Your Personalized Diet Plan</h2>
+            <div class="diet-plan">
+                <h3>🍳 Breakfast</h3>
+                <p><%= dietPlan.breakfast %></p>
+        
+                <h3>🥗 Lunch</h3>
+                <p><%= dietPlan.lunch %></p>
+        
+                <h3>🍽 Dinner</h3>
+                <p><%= dietPlan.dinner %></p>
+        
+                <h3>🍏 Snacks</h3>
+                <p><%= dietPlan.snacks %></p>
+            </div>
+        <% } %>
+        
+
+        <a href="/fitness-tips" class="home-btn">💪 Get Fitness & Exercise Tips</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Balanced Diet & Health Tracker</p>
+    </footer>
+
+</body>
+</html>

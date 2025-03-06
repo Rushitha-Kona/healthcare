@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot | Balanced Diet & Health Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            text-align: center;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .chat-box {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background: #f9f9f9;
+            text-align: left;
+        }
+
+        .chat-bubble {
+            background: #e3f2fd;
+            color: #333;
+            padding: 10px;
+            border-radius: 8px;
+            display: inline-block;
+            max-width: 80%;
+            margin: 8px 0;
+        }
+
+        .user-bubble {
+            background: #d1c4e9;
+        }
+
+        .bot-bubble {
+            background: #b2dfdb;
+        }
+
+        input {
+            width: 80%;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        footer {
+            margin-top: 20px;
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Balanced Diet & Health Tracker</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/register">Register</a></li>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/bmi">BMI Calculator</a></li>
+                <li><a href="/diet-plan">Diet Plan</a></li>
+                
+                <li><a href="/chatbot">Chatbot</a></li>
+                <li><a href="/nutrition">Nutrition articles</a></li>
+               <li><a class="nav-link text-success" href="/recipes"> Healthy Recipes</a></li> 
+            </ul>
+        </nav>
+    </header>
+
+    <div class="chat-box">
+        <h2>💬 Chat with our Bot</h2>
+        <div id="chat-log"></div>
+        <input type="text" id="user-input" placeholder="Type your message..." />
+        <button onclick="sendMessage()">Send</button>
+    </div>
+
+   
+
+    <script>
+        async function sendMessage() {
+            const userInput = document.getElementById("user-input").value;
+            if (!userInput) return;
+
+            // Append user message
+            const chatLog = document.getElementById("chat-log");
+            chatLog.innerHTML += `<div class='chat-bubble user-bubble'>👤 ${userInput}</div>`;
+
+            // Call chatbot API
+            const response = await fetch('/chatbot', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: userInput })
+            });
+
+            const data = await response.json();
+            const botMessage = data.botResponse || "I couldn't understand that.";
+
+            // Append bot response
+            chatLog.innerHTML += `<div class='chat-bubble bot-bubble'>🤖 ${botMessage}</div>`;
+
+            // Clear input field
+            document.getElementById("user-input").value = "";
+        }
+    </script>
+
+</body>
+</html>

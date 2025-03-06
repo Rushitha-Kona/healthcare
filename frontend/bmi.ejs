@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BMI Calculator | Balanced Diet & Health Tracker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+    }
+
+    header {
+      background-color: #333;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    nav ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    nav ul li {
+      display: inline;
+      margin: 0 10px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    nav ul li a:hover {
+      text-decoration: underline;
+    }
+
+    main {
+      padding: 20px;
+    }
+
+    .form-container {
+      max-width: 400px;
+      margin: 20px auto;
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    label {
+      font-size: 16px;
+      color: #333;
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    button {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+
+    #bmi-result {
+      margin-top: 15px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Balanced Diet & Health Tracker</h1>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/register">Register</a></li>
+        <li><a href="/login">Login</a></li>
+        <li><a href="/bmi">BMI Calculator</a></li>
+        <li><a href="/diet-plan">Diet Plan</a></li>
+        
+        <li><a href="/chatbot">Chatbot</a></li>
+        <li><a href="/nutrition">Nutrition articles</a></li>
+       <li><a class="nav-link text-success" href="/recipes"> Healthy Recipes</a></li> 
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="form-container">
+      <h2>BMI Calculator</h2>
+      <label for="weight">Weight (kg):</label>
+      <input type="number" id="weight" placeholder="Enter your weight">
+
+      <label for="height">Height (cm):</label>
+      <input type="number" id="height" placeholder="Enter your height">
+
+      <button onclick="calculateBMI()">Calculate BMI</button>
+
+      <p id="bmi-result"></p>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Balanced Diet & Health Tracker</p>
+  </footer>
+
+  <script>
+    function calculateBMI() {
+      const weight = parseFloat(document.getElementById('weight').value);
+      const height = parseFloat(document.getElementById('height').value) / 100;
+
+      if (!weight || !height) {
+        document.getElementById('bmi-result').innerText = "Please enter valid weight and height.";
+        return;
+      }
+
+      const bmi = (weight / (height * height)).toFixed(2);
+      let status = "";
+
+      if (bmi < 18.5) status = "Underweight";
+      else if (bmi < 24.9) status = "Normal weight";
+      else if (bmi < 29.9) status = "Overweight";
+      else status = "Obese";
+
+      document.getElementById('bmi-result').innerText = `Your BMI: ${bmi} (${status})`;
+    }
+  </script>
+</body>
+</html>
