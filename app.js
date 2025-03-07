@@ -10,7 +10,7 @@ const axios = require('axios');
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const User = require('./models/user');
 const Nutrition = require('./models/nutrition');
-
+const PORT = process.env.PORT || 4000;
 const API_URL = 'https://api.edamam.com/api/recipes/v2';
 const APP_ID =  process.env.EDAMAM_APP_ID // Get this from Edamam API
 const APP_KEY = process.env.EDAMAM_APP_KEY;;
@@ -532,3 +532,4 @@ app.get('/logout', (req, res) => {
 app.use((req, res) => {
     res.status(404).sendFile(path.join(__dirname, 'frontend', '404.html'));
 });
+
