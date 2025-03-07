@@ -527,6 +527,8 @@ app.get('/logout', (req, res) => {
 
 
 // ✅ 404 Error Handler
+
+
 app.use((req, res) => {
-    res.status(404).render('404', { title: 'Error' });
-}); 
+    res.status(404).sendFile(path.join(__dirname, 'frontend', '404.html'));
+});
