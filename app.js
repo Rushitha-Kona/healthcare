@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 4000;
 const API_URL = 'https://api.edamam.com/api/recipes/v2';
 const APP_ID =  process.env.EDAMAM_APP_ID // Get this from Edamam API
 const APP_KEY = process.env.EDAMAM_APP_KEY;;
-
+const port=process.env.PORT || 4000;
 const app = express();
 
 const isAuthenticated = (req, res, next) => {
@@ -65,8 +65,8 @@ app.use(express.static(path.join(__dirname, 'frontend')));
 
 // ✅ Home Route
 app.get('/', (req, res) => {
-    res.render('index', { title: 'Home' });
-});
+    res.render('index');  // Ensure you have an 'index.ejs' file in the views folder
+  });
 
 // ✅ Register Page (GET)
 app.get('/register', (req, res) => {
@@ -533,3 +533,6 @@ app.use((req, res) => {
     res.status(404).sendFile(path.join(__dirname, 'frontend', '404.html'));
 });
 
+app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
+  });
